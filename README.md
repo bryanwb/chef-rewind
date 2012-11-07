@@ -31,6 +31,10 @@ user "postgres" do
 end
 
 # file my-postgresql/recipes/
+require 'chef/edit'
+
+include_recipe "postgresql::server"
+
 edit "user[postgres]"
   home '/var/lib/pgsql/9.2'
 end
