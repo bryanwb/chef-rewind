@@ -31,6 +31,7 @@ user "postgres" do
 end
 
 # file my-postgresql/recipes/
+chef_gem "chef-edit"
 require 'chef/edit'
 
 include_recipe "postgresql::server"
