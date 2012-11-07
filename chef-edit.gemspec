@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/chef-edit/version', __FILE__)
-
+$:.unshift(File.dirname(__FILE__) + '/lib')
 Gem::Specification.new do |gem|
   gem.authors       = ["Bryan Berry"]
   gem.email         = ["bryan.berry@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Monkey patches Chef to allow editing of existing resources}
+  gem.summary       = %q{Monkey patches Chef to allow editing of existing resources}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
@@ -13,5 +12,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "chef-edit"
   gem.require_paths = ["lib"]
-  gem.version       = Chef::Edit::VERSION
+  gem.version       = "0.0.1"
 end
