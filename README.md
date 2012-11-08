@@ -30,7 +30,7 @@ user "postgres" do
   supports  :manage_home => true
 end
 
-# file my-postgresql/recipes/
+# file my-postgresql/recipes/server.rb
 chef_gem "chef-edit"
 require 'chef/edit'
 
