@@ -40,10 +40,12 @@ edit "user[postgres]"
   home '/var/lib/pgsql/9.2'
 end
 
-# the user "postgres" will act once with the home directory
-# '/var/lib/pgsql/9.2
 ```
 
+The user "postgres" will act once with the home directory
+'/var/lib/pgsql/9.2 and the cookbook_name attribute is now
+"my-postgresql" instead of "postgresql". This last part is
+particularly important for templates and cookbook files.
 
 ## Contributing
 
