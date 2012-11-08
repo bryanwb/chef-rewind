@@ -36,7 +36,7 @@ require 'chef/edit'
 
 include_recipe "postgresql::server"
 
-edit "user[postgres]"
+edit "user[postgres]" do
   home '/var/lib/pgsql/9.2'
 end
 
@@ -46,6 +46,39 @@ The user "postgres" will act once with the home directory
 '/var/lib/pgsql/9.2 and the cookbook_name attribute is now
 "my-postgresql" instead of "postgresql". This last part is
 particularly important for templates and cookbook files.
+
+## Gotchas *Important*
+
+The edit method does not automatically change the cookbook_name
+attribute for a resource to the current cookbook. Doing so could cause
+some unexpected behavior, particularly for less expert chef users.
+
+Example 
+
+```Ruby
+# file postgresql/recipes/server.rb
+template "/var/pgsql/data/postgresql.conf" do
+  source  "postgresql.conf.erb"
+  owner "postgres"
+end
+
+# file my-postgresql/recipes/server.rb
+chef_gem "chef-edit"
+require 'chef/edit'
+
+include_recipe "postgresql::server"
+# my-postgresql.conf.erb located inside my-postgresql/templates/default/my-postgresql.conf.erb
+edit :template => "/var/pgsql/data/postgresql.conf" do
+  source "my-postgresql.conf.erb"
+  cookbook_name "my-postgresql"
+end
+
+```
+
+If you do not specify cookbook_name the edit function will likely
+return an error since Chef will look in the postgresql cookbook for
+the source file and not in the my-postgresql cookbook.
+
 
 ## Contributing
 
