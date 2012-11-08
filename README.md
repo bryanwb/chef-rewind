@@ -2,7 +2,7 @@
 
 This adds a simple function to the Chef library scope to
 edit and existing resource. If the given resource does not exist, 
-a new resource will be created.
+a Chef::Exceptions::ResourceNotFound exception will be raised.
 
 This function is designed to assist the library cookbook pattern.
 
@@ -40,6 +40,8 @@ edit "user[postgres]"
   home '/var/lib/pgsql/9.2'
 end
 
+# the user "postgres" will act once with the home directory
+# '/var/lib/pgsql/9.2
 ```
 
 
