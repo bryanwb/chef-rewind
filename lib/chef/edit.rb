@@ -31,3 +31,14 @@ class Chef
   end
 end
 
+
+class Chef
+  class Resource
+    def cookbook_name(arg=nil)
+      set_or_return(
+                    :cookbook_name,
+                    arg,
+                    :kind_of => String)
+    end
+  end
+end
