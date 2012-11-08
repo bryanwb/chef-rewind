@@ -20,10 +20,9 @@ class Chef
     # block<Proc>:: Block with attributes to edit or create
     def edit(resource_id,  &block)
       begin
-        r = resources(resource_id)  
+        r = resources(resource_id)
         Chef::Log.info "Resource #{resource_id} found, now editing it"
         r.instance_exec(&block) if block
-        r.cookbook_name = cookbook_name
       rescue Chef::Exceptions::ResourceNotFound => e
         Chef::Log.info "Resource #{resource_id} not found, so edit fails"
         raise e
