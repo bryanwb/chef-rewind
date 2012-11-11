@@ -1,7 +1,7 @@
-# Chef::Edit
+# Chef::Rewind
 
 This adds a simple function to the Chef library scope to
-edit and existing resource. If the given resource does not exist, 
+rewind an existing resource. If the given resource does not exist, 
 a Chef::Exceptions::ResourceNotFound exception will be raised.
 
 This function is designed to assist the library cookbook pattern.
@@ -10,7 +10,7 @@ This function is designed to assist the library cookbook pattern.
 
 Add this line to your application's Gemfile:
 
-    gem 'chef-edit'
+    gem 'chef-rewind'
 
 And then execute:
 
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install chef-edit
+    $ gem install chef-rewind
 
 ## Usage
 
@@ -31,12 +31,12 @@ user "postgres" do
 end
 
 # file my-postgresql/recipes/server.rb
-chef_gem "chef-edit"
-require 'chef/edit'
+chef_gem "chef-rewind"
+require 'chef/rewind'
 
 include_recipe "postgresql::server"
 
-edit "user[postgres]" do
+rewind "user[postgres]" do
   home '/var/lib/pgsql/9.2'
 end
 
@@ -49,7 +49,7 @@ particularly important for templates and cookbook files.
 
 ## Gotchas *Important*
 
-The edit method does not automatically change the cookbook_name
+The rewind method does not automatically change the cookbook_name
 attribute for a resource to the current cookbook. Doing so could cause
 some unexpected behavior, particularly for less expert chef users.
 
@@ -63,19 +63,19 @@ template "/var/pgsql/data/postgresql.conf" do
 end
 
 # file my-postgresql/recipes/server.rb
-chef_gem "chef-edit"
-require 'chef/edit'
+chef_gem "chef-rewind"
+require 'chef/rewind'
 
 include_recipe "postgresql::server"
 # my-postgresql.conf.erb located inside my-postgresql/templates/default/my-postgresql.conf.erb
-edit :template => "/var/pgsql/data/postgresql.conf" do
+rewind :template => "/var/pgsql/data/postgresql.conf" do
   source "my-postgresql.conf.erb"
   cookbook_name "my-postgresql"
 end
 
 ```
 
-If you do not specify cookbook_name the edit function will likely
+If you do not specify cookbook_name the rewind function will likely
 return an error since Chef will look in the postgresql cookbook for
 the source file and not in the my-postgresql cookbook.
 
