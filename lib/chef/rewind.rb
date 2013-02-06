@@ -21,6 +21,7 @@ module ChefRewind
         r = resources(resource_id)
         Chef::Log.info "Resource #{resource_id} found, now rewinding it"
         r.instance_exec(&block) if block
+        r
       rescue Chef::Exceptions::ResourceNotFound => e
         Chef::Log.info "Resource #{resource_id} not found, so rewind fails"
         raise e

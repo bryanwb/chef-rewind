@@ -57,6 +57,19 @@ describe Chef::Recipe do
         end
       end.should raise_error(Chef::Exceptions::ResourceNotFound)
     end
+
+    it "returns the resource" do
+
+      original_resource = @recipe.zen_master "foobar" do
+        peace false
+      end
+
+      rewinded_resource = @recipe.rewind "zen_master[foobar]" do
+        peace true
+      end
+
+      rewinded_resource.should == original_resource
+    end
   end
 
 end
