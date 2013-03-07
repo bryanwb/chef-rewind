@@ -6,6 +6,8 @@ a Chef::Exceptions::ResourceNotFound exception will be raised.
 
 This function is designed to assist the library cookbook pattern.
 
+Effectively, the rewind resource allows you to monkeypatch a cookbook that you would rather not modify directly. It will modify some properties of a resource, during the complile phase, before chef-client actually starts the run phase.
+
 ## Installation
 
 Add this line to your application's Gemfile:
