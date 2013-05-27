@@ -41,7 +41,11 @@ require 'chef/mixins'
 require 'chef/application'
 require 'chef/applications'
 
-require 'chef/shef'
+begin
+  require 'chef/shef'
+rescue LoadError
+  require 'chef/shef/ext'
+end
 require 'chef/util/file_edit'
 
 # If you want to load anything into the testing environment
