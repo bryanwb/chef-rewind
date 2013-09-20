@@ -1,0 +1,17 @@
+Peter Fern: Allow rewinding recipe_name
+Peter Fern: Shef extensions have moved in 11.x, add compatible require
+Peter Fern: Change deprecated Gemfile source `:rubygems` to `https://rubygems.org`
+aabes: Update README.md
+Bryan Berry: now with rspec tests using chef's spec_helper
+Bryan Berry: rename to chef-rewind
+Bryan Berry: use set_and_return for Chef::Resource.cookbook_name
+Bryan Berry: update readme
+Bryan Berry: revert earlier commit that sets cookbook_name
+Bryan Berry: update readme
+Bryan Berry: set cookbook_name to current cookbook at time of editing
+Bryan Berry: don't create nonexistent resources
+Nathen Harvey: Add recipe file name to the README
+Bryan Berry: add note that need `chef_gem` to install it
+Bryan Berry: update readme
+Bryan Berry: set version #
+Bryan Berry: initial commit
