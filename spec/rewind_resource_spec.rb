@@ -23,4 +23,12 @@ describe Chef::Resource do
 
   end
 
+  describe "recipe_name" do
+    it "recipe_name sets @recipe_name properly" do
+      @resource.recipe_name "foobar"
+      @resource.recipe_name.should == "foobar"
+    end
+
+  end
+
 end

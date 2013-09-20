@@ -40,5 +40,12 @@ class Chef
                     arg,
                     :kind_of => String)
     end
+
+    def recipe_name(arg=nil)
+      set_or_return(
+                    :recipe_name,
+                    arg,
+                    :kind_of => String)
+    end
   end
 end
