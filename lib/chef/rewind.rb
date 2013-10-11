@@ -28,6 +28,20 @@ class Chef
         raise e
       end
     end
+
+    #  unwinds an existing resource if it exists,
+    #  otherwise raises the Chef::Exceptions::ResourceNotFound exception
+    #  For example:
+    #      #  recipe postgresql::server defines user "postgres"  and
+    #      #  sets the home directory to /var/pgsql/9.2
+    #      include_recipe "postgresql::user"
+    #
+    #      unwind "user[postgres]"
+    # === Parameters
+    # resource<String>:: String identifier for resource
+    def unwind(resource_id)
+      run_context.resource_collection.delete_resource resource_id
+    end
   end
 end
 
@@ -46,6 +60,19 @@ class Chef
                     :recipe_name,
                     arg,
                     :kind_of => String)
+    end
+  end
+end
+
+
+class Chef
+  class ResourceCollection
+    def delete_resource(resource_id)
+      lookup resource_id
+
+      # assumes `resource_id` is the same as `Chef::Resource#to_s`
+      @resources.delete_if {|r| r.to_s == resource_id }
+      @resources_by_name.delete resource_id
     end
   end
 end
