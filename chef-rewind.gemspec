@@ -3,8 +3,8 @@ $:.unshift(File.dirname(__FILE__) + '/lib')
 Gem::Specification.new do |gem|
   gem.authors       = ["Bryan Berry"]
   gem.email         = ["bryan.berry@gmail.com"]
-  gem.description   = %q{Monkey patches Chef to allow rewinding of existing resources}
-  gem.summary       = %q{Monkey patches Chef to allow rewinding of existing resources}
+  gem.description   = %q{Monkey patches Chef to allow rewinding and unwinding of existing resources}
+  gem.summary       = %q{Monkey patches Chef to allow rewinding and unwinding of existing resources}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
