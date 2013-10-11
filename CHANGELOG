@@ -1,3 +1,4 @@
+Hugo Lopes Tavares: Allow unwinding resources
 Peter Fern: Allow rewinding recipe_name
 Peter Fern: Shef extensions have moved in 11.x, add compatible require
 Peter Fern: Change deprecated Gemfile source `:rubygems` to `https://rubygems.org`
