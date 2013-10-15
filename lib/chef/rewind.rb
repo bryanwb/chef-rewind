@@ -72,7 +72,13 @@ class Chef
 
       # assumes `resource_id` is the same as `Chef::Resource#to_s`
       @resources.delete_if {|r| r.to_s == resource_id }
+      resource_index_value = @resources_by_name[resource_id]
+      @resources_by_name.each do |k, v|
+        @resources_by_name[k] = v - 1 if v > resource_index_value
+      end
+
       @resources_by_name.delete resource_id
+
     end
   end
 end

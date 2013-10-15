@@ -27,12 +27,18 @@ class Chef
       def initialize(name, run_context=nil)
         @resource_name = :zen_master
         super
+        @action = :nothing
+        @allowed_actions = [:change, :nothing]
       end
       
       def peace(tf)
         @peace = tf
       end
       
+      def updated_by_last_action?
+        true
+      end
+
       def something(arg=nil)
         set_if_args(@something, arg) do
           case arg

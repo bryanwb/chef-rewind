@@ -19,13 +19,11 @@
 class Chef
   class Resource
     class Cat < Chef::Resource
-      
-      attr_accessor :action
-      
       def initialize(name, run_context=nil)
         @resource_name = :cat
         super
-        @action = "sell"
+        @action = :nothing
+        @allowed_actions = [:nothing, :sell, :blowup]
       end
       
       def pretty_kitty(arg=nil)
