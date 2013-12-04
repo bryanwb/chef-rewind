@@ -12,5 +12,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "chef-rewind"
   gem.require_paths = ["lib"]
-  gem.version       = "0.0.7"
+  gem.version       = "0.0.8"
 end

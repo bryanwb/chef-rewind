@@ -1,18 +1,21 @@
-Hugo Lopes Tavares: Allow unwinding resources
-Peter Fern: Allow rewinding recipe_name
-Peter Fern: Shef extensions have moved in 11.x, add compatible require
-Peter Fern: Change deprecated Gemfile source `:rubygems` to `https://rubygems.org`
-aabes: Update README.md
-Bryan Berry: now with rspec tests using chef's spec_helper
-Bryan Berry: rename to chef-rewind
-Bryan Berry: use set_and_return for Chef::Resource.cookbook_name
-Bryan Berry: update readme
-Bryan Berry: revert earlier commit that sets cookbook_name
-Bryan Berry: update readme
-Bryan Berry: set cookbook_name to current cookbook at time of editing
-Bryan Berry: don't create nonexistent resources
-Nathen Harvey: Add recipe file name to the README
-Bryan Berry: add note that need `chef_gem` to install it
-Bryan Berry: update readme
-Bryan Berry: set version #
-Bryan Berry: initial commit
+Merge pull request #13 from yipit-cookbooks/bugfix-unwind
+bump version for release
+Merge pull request #12 from yipit-cookbooks/unwind
+bump version for 0.0.6 release
+Merge pull request #7 from pdf/rubygems_deprecation
+Merge pull request #8 from pdf/chef_11_compat
+Merge pull request #9 from pdf/rewind_recipe_name
+Merge pull request #4 from aabes/master
+now with rspec tests using chef's spec_helper
+rename to chef-rewind
+use set_and_return for Chef::Resource.cookbook_name
+update readme
+revert earlier commit that sets cookbook_name
+update readme
+set cookbook_name to current cookbook at time of editing
+Merge pull request #1 from nathenharvey/patch-1
+don't create nonexistent resources
+add note that need `chef_gem` to install it
+update readme
+set version #
+initial commit
