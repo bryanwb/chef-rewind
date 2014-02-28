@@ -2,9 +2,7 @@
 # https://github.com/opscode/chef/blob/master/lib/chef/dsl/recipe.rb
 # and https://github.com/opscode/chef/blob/master/lib/chef/recipe.rb
 
-class Chef
-  class Recipe
-
+module ChefRewind
     #  rewinds an existing resource if it exists,
     #  otherwise raises the Chef::Exceptions::ResourceNotFound exception
     #  For example:
@@ -23,6 +21,7 @@ class Chef
         r = resources(resource_id)
         Chef::Log.info "Resource #{resource_id} found, now rewinding it"
         r.instance_exec(&block) if block
+        r
       rescue Chef::Exceptions::ResourceNotFound => e
         Chef::Log.info "Resource #{resource_id} not found, so rewind fails"
         raise e
@@ -42,6 +41,11 @@ class Chef
     def unwind(resource_id)
       run_context.resource_collection.delete_resource resource_id
     end
+end
+
+class Chef
+  class Recipe
+    include ChefRewind
   end
 end
 
@@ -79,6 +83,16 @@ class Chef
 
       @resources_by_name.delete resource_id
 
+    end
+  end
+end
+
+class Chef
+  class Provider
+    include ChefRewind
+
+    def resources *args
+      resource_collection && resource_collection.find(*args)
     end
   end
 end
