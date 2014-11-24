@@ -70,15 +70,24 @@ class Chef
     def delete_resource(resource_id)
       lookup resource_id
 
-      # assumes `resource_id` is the same as `Chef::Resource#to_s`
-      @resources.delete_if {|r| r.to_s == resource_id }
-      resource_index_value = @resources_by_name[resource_id]
-      @resources_by_name.each do |k, v|
-        @resources_by_name[k] = v - 1 if v > resource_index_value
+      indexes_to_delete = @resources.each_index.select do |resource_index|
+        # assumes `resource_id` is the same as `Chef::Resource#to_s`
+        @resources[resource_index].to_s == resource_id
       end
 
-      @resources_by_name.delete resource_id
+      # Delete indexes backwards to avoid problems with changing the array
+      indexes_to_delete.sort.reverse.each { |index| delete_index index }
 
+      @resources_by_name.delete resource_id
+    end
+
+    private
+
+    def delete_index(resource_index)
+      @resources.delete_at resource_index
+      @resources_by_name.each do |k, v|
+        @resources_by_name[k] = v - 1 if v > resource_index
+      end
     end
   end
 end
